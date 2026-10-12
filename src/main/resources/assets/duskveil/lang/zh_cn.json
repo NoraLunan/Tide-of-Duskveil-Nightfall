@@ -1,0 +1,24 @@
+{
+  "duskveil.command.clear.success": "已清理实体",
+  "duskveil.command.count.fail": "目标值无法小于 0",
+  "duskveil.command.count.success": "已将事件计数设置为 %s",
+  "duskveil.command.marker.success": "将今晚标记为潮夜",
+  "duskveil.command.gaze.fail.no_during": "凝视效果仅能在潮夜期间生效",
+  "duskveil.command.gaze.fail.gamemode": "%s 免疫凝视效果",
+  "duskveil.command.gaze.fail.exception": "需要选择一个有效的在线玩家",
+  "duskveil.command.gaze.success": "已对 %s 应用凝视效果",
+  "duskveil.command.start.fail": "当前正处于潮夜期间",
+  "duskveil.command.start.success": "潮夜已开始",
+  "duskveil.command.stop.fail": "当前并非潮夜",
+  "duskveil.command.stop.success": "潮夜已停止",
+  "duskveil.command.reload.success": "已重载配置文件 %s",
+  "duskveil.command.time.fail": "潮夜期间不允许修改时间",
+  "duskveil.command.weather.fail": "潮夜期间不允许修改天气",
+
+  "duskveil.message.no_sleep": "你似乎无法入睡...",
+  "duskveil.message.version_update": "【暮潮之夜】",
+
+  "duskveil.overlay.time": "游戏时间: ",
+  "duskveil.overlay.pos": "玩家坐标: ",
+  "duskveil.overlay.entity": "实体数量: "
+}

@@ -1,8 +1,6 @@
 package net.noralunan.duskveil.config;
 
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.fml.config.ModConfig;
-import net.noralunan.duskveil.Duskveil;
 import net.noralunan.duskveil.core.MessageType;
 import net.noralunan.duskveil.core.WeatherType;
 import net.noralunan.library.config.forge.NoraConfig;
@@ -30,8 +28,6 @@ public class EventConfig
 
     protected EventConfig(NoraConfig config)
     {
-        config.depict("Tide Night Event Settings").header(Duskveil.MOD_NAME, Duskveil.VERSION, ModConfig.Type.SERVER);
-        config.layer("Event");
         this.full_moon = config
                 .depict("Does a full moon always trigger a Tide Night?")
                 .entry("Trigger on Full Moon", true);
@@ -75,7 +71,7 @@ public class EventConfig
                 .depict("Commands to execute with server permissions when a Tide Night starts.")
                 .depict("Do NOT use relative coordinates (~) or self-selector (@s) unless wrapped in an 'execute' command.")
                 .list(true)
-                .validator(entry -> entry instanceof String)
+                .validator(String.class)
                 .entry("Command List", List.of());
         config.out();
         config.depict("Settings for when a Tide Night ends").layer("End");
@@ -94,8 +90,8 @@ public class EventConfig
                 .depict("Commands to execute with server permissions when a Tide Night ends")
                 .depict("Do NOT use relative coordinates (~) or self-selector (@s) unless wrapped in an 'execute' command.")
                 .list(true)
-                .validator(entry -> entry instanceof String)
+                .validator(String.class)
                 .entry("Command List", List.of());
-        config.out(2);
+        config.out();
     }
 }

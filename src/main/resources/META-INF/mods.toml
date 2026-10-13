@@ -9,7 +9,7 @@ license = "${mod_license}"
     logoFile = "logo.png"
     logoBlur = false
     displayURL = ""
-    updateJSONURL = ""
+    updateJSONURL = "https://www.github.com/NoraLunan/Tide-of-Duskveil-Nightfall/raw/master/version.json"
     authors = "${mod_authors}"
     description = '''${mod_description}'''
 

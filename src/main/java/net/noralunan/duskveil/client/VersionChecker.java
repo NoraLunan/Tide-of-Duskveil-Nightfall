@@ -10,7 +10,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.noralunan.duskveil.Duskveil;
 import net.noralunan.duskveil.config.DuskveilConfig;
-import net.noralunan.library.common.NoraComponent;
 import net.noralunan.library.common.NoraLogger;
 
 import java.io.BufferedReader;
@@ -34,9 +33,7 @@ public class VersionChecker
         String latest = check();
         if (latest != null && !latest.equals(Duskveil.VERSION))
         {
-            Component message = NoraComponent
-                    .line("[" + Duskveil.MOD_NAME + "]").gold().bold()
-                    .append(" New version " + latest + " is available! Current version: " + Duskveil.VERSION);
+            Component message = Component.translatable("duskveil.message.version_update", latest, Duskveil.VERSION);
             event.getEntity().displayClientMessage(message, false);
             Minecraft.getInstance().stop();
         }

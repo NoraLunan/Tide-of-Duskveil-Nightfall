@@ -38,11 +38,6 @@ public class DuskveilData extends SavedData
         );
     }
 
-    void sync()
-    {
-        this.setDirty();
-    }
-
     private static DuskveilData load(CompoundTag tag)
     {
         return new DuskveilData().read(tag);

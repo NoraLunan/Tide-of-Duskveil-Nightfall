@@ -42,7 +42,7 @@ class Count {
 
     private static int execute(CommandSourceStack source, int value, TideLevel tide) {
         tide.setEventCount(value);
-        tide.syncData();
+        tide.setDirty();
         source.sendSuccess(() -> Component.translatable("duskveil.command.count.success", value), true);
         return 1;
     }

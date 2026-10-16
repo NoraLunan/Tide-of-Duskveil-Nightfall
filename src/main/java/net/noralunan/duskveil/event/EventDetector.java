@@ -23,7 +23,7 @@ public class EventDetector
             if (tide.isInspected())
             {
                 tide.setInspected(false);
-                tide.syncData();
+                tide.setDirty();
             }
             return;
         }
@@ -89,6 +89,6 @@ public class EventDetector
             }
         }
 
-        tide.syncData();
+        tide.setDirty();
     }
 }

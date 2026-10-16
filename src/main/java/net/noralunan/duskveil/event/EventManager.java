@@ -53,7 +53,7 @@ public class EventManager
                     )
             );
         }
-        tide.syncData();
+        tide.setDirty();
     }
 
     private static void stop(TideLevel tide)
@@ -63,7 +63,7 @@ public class EventManager
         MinecraftForge.EVENT_BUS.post(new TideNightLifecycle.StoppingEvent(tide));
 
         tide.setTideNight(false);
-        tide.syncData();
+        tide.setDirty();
 
         EventConfig config = DuskveilConfig.SERVER.event;
 

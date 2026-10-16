@@ -23,7 +23,7 @@ public class EventProcessor
     {
         TideLevel tide = event.tideLevel();
         tide.setLastTide(tide.day());
-        tide.syncData();
+        tide.setDirty();
 
         Component message = NoraComponent.line(event.getMessage()).darkRed();
         broadcast(message, event.messageType(), tide);
@@ -40,7 +40,7 @@ public class EventProcessor
         if (tide.getLastTide() >= tide.getNextFixDay())
         {
             tide.setNextFixDay(config.fix_day.get() + tide.day());
-            tide.syncData();
+            tide.setDirty();
         }
 
         Component message = NoraComponent.of(event.getMessage());

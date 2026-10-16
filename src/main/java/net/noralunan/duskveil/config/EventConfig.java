@@ -13,6 +13,7 @@ public class EventConfig
     public final ConfigValue<Integer> fix_day;
     public final ConfigValue<Double> trigger_chance;
     public final ConfigValue<Boolean> no_sleep;
+    public final ConfigValue<String> sleep_message;
     public final ConfigValue<String> weather;
     public final ConfigValue<Boolean> retain;
     public final ConfigValue<Boolean> despawn;
@@ -43,6 +44,10 @@ public class EventConfig
         this.no_sleep = config
                 .depict("Is sleeping prevented for entities during a Tide Night?")
                 .entry("Cannot Sleep", true);
+        this.sleep_message = config
+                .depict("What chat message will be sent when this mod prevents the player from sleeping?")
+                .lineBreak()
+                .entry("Prevent Sleep Message", "Clearly you can't fall asleep");
         this.weather = config
                 .depict("How should the weather change when a Tide Night starts, if the current dimension supports weather mechanics?")
                 .entry("Weather Change", WeatherType.NONE);

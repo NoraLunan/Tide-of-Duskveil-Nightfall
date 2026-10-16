@@ -4,6 +4,16 @@
   "package": "net.noralunan.duskveil.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "duskveil.refmap.json",
-  "mixins": [],
-  "client": []
+  "mixins": [
+    "CreeperMixin",
+    "LivingEntityMixin",
+    "MobMixin",
+    "ServerLevelMixin",
+    "ServerPlayerMixin",
+    "TimeCommandMixin",
+    "WeatherCommandMixin"
+  ],
+  "client": [
+    "OptionInstanceMixin"
+  ]
 }

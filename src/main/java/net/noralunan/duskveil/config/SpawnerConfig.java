@@ -75,8 +75,6 @@ public class SpawnerConfig
                 .lineBreak()
                 .entry("No Baby Mob", true);
         this.count_limit = config
-                .depict("Since the mod spawns a wave of entities around each player,")
-                .depict("multiple players clustered together will result in multiple waves spawning at once.")
                 .depict("This setting controls the multiplier applied to the total spawned entity count when multiple players are nearby.")
                 .lineBreak()
                 .min(0d)

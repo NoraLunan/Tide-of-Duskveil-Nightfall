@@ -23,6 +23,10 @@ public class EntityConfig
     public final ConfigValue<Boolean> enchant;
     public final ConfigValue<Integer> enchantment_level;
     public final ConfigValue<Boolean> treasure_enchantments;
+    public final ConfigValue<Boolean> immune_fire;
+    public final ConfigValue<Boolean> immune_fall;
+    public final ConfigValue<Boolean> break_block;
+    public final ConfigValue<Double> max_hardness;
 
     protected EntityConfig(NoraConfig config)
     {
@@ -63,6 +67,7 @@ public class EntityConfig
                 .entry("Pathfind to Player", true);
         this.pathfind_recalc = config
                 .depict("If \"Pathfind to Player\" is enabled, what is the interval for recalculating the entity's pathfinding AI?")
+                .depict(DuskveilConfig.RELOAD)
                 .min(1)
                 .entry("Pathfind Recalc Interval", 40);
         this.shield_value = config
@@ -77,7 +82,7 @@ public class EntityConfig
                 .entry("Disable Attack Each Other", false);
         this.enchant = config
                 .depict("Should equipment worn by spawned entities be enchanted?")
-                .entry("Enchant Equipment", true);
+                .entry("Enchant Equipment", false);
         this.enchantment_level = config
                 .depict("The enchantment power applied to the equipment of spawned entities acts as the \"enchanting table level\",")
                 .depict("rather than being the direct level of the enchantment itself.")
@@ -86,5 +91,19 @@ public class EntityConfig
         this.treasure_enchantments = config
                 .depict("Can treasure enchantments be included in the enchantments for spawned entities' equipment?")
                 .entry("Allow Treasure Enchantment", true);
+        this.immune_fire = config
+                .depict("Do entities spawned by this mod get the Fire Resistance effect when they are on fire?")
+                .entry("Immune Fire", true);
+        this.immune_fall = config
+                .depict("Do entities spawned by this mod get the Slow Falling effect when they are in the air?")
+                .entry("Immune Fall", false);
+        this.break_block = config
+                .depict("Can entities spawned by this mod destroy blocks when they are stuck inside walls?")
+                .entry("Destroy Block", true);
+        this.max_hardness = config
+                .depict("What is the maximum block hardness that entities spawned by this mod are allowed to destroy when stuck inside walls?")
+                .lineBreak()
+                .min(0d)
+                .entry("Max Hardness", 10d);
     }
 }

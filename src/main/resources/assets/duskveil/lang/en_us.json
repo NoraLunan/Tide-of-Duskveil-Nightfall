@@ -15,7 +15,6 @@
   "duskveil.command.time.fail": "Time change disabled in Tide Night",
   "duskveil.command.weather.fail": "Weather change disabled in Tide Night",
 
-  "duskveil.message.no_sleep": "Clearly you can't fall asleep",
   "duskveil.message.version_update": "[Tide of Duskveil Nightfall]",
 
   "duskveil.overlay.time": "Gametime: ",

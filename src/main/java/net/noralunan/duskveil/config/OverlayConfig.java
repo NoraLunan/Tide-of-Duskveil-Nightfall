@@ -55,6 +55,8 @@ public class OverlayConfig
                 .entry("Pos Decimal Places", 1);
         this.entity_recalc = config
                 .depict("How often is the Entity entry in the information overlay recalculated?")
+                .depict(DuskveilConfig.RELOAD)
+                .restart()
                 .entry("Entity Recalc Interval", 20);
         this.enable_shadow = config
                 .depict("Should the text displayed in the overlay have a shadow?")

@@ -15,7 +15,7 @@
   "duskveil.command.time.fail": "潮夜期间不允许修改时间",
   "duskveil.command.weather.fail": "潮夜期间不允许修改天气",
 
-  "duskveil.message.version_update": "【暮潮之夜】",
+  "duskveil.message.version_update": "【暮潮之夜】 检测到新版本：%s，当前版本：%s",
 
   "duskveil.overlay.time": "游戏时间: ",
   "duskveil.overlay.pos": "玩家坐标: ",

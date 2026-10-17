@@ -64,9 +64,14 @@ public class Duskveil
 
         NoraEvent.register(EntityDriver.class);
 
+        NoraEvent.register(DuskveilClient.class);
+
         IEventBus mod = FMLJavaModLoadingContext.get().getModEventBus();
         mod.addListener(DuskveilOverlay::setup);
         mod.register(OverlayInfo.EntityEntry.class);
+        mod.register(DuskveilClient.GammaOverride.class);
+
+        mod.register(DuskveilData.NetWork.class);
 
         IEventBus forge = MinecraftForge.EVENT_BUS;
         forge.register(DuskveilData.class);
@@ -87,7 +92,6 @@ public class Duskveil
         forge.register(DuskveilCommand.class);
 
         forge.register(DuskveilClient.class);
-        forge.register(DuskveilClient.GammaOverride.class);
         forge.register(VersionChecker.class);
         forge.register(OverlayInfo.Pos.class);
 

@@ -19,5 +19,7 @@
 
   "duskveil.overlay.time": "游戏时间: ",
   "duskveil.overlay.pos": "玩家坐标: ",
-  "duskveil.overlay.entity": "实体数量: "
+  "duskveil.overlay.entity": "实体数量: ",
+
+  "duskveil.client.gamma_lock": "已锁定"
 }

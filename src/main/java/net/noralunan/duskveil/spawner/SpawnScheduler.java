@@ -30,7 +30,7 @@ public class SpawnScheduler
                 int interval = tide.dayTime() + randomInterval(config);
                 tide.setNextWave(interval);
                 tide.addWaveCount(1);
-                tide.setDirty();
+                tide.syncData();
 
                 MinecraftForge.EVENT_BUS.post(new SpawnWaveEvent(tide, interval));
             }
@@ -48,7 +48,7 @@ public class SpawnScheduler
 
         TideLevel tide = event.tideLevel();
         tide.setNextWave(tide.dayTime() + delay);
-        tide.setDirty();
+        tide.syncData();
     }
 
     @SubscribeEvent
@@ -57,7 +57,7 @@ public class SpawnScheduler
         TideLevel tide = event.tideLevel();
         tide.setNextWave(-1);
         tide.setWaveCount(0);
-        tide.setDirty();
+        tide.syncData();
     }
 
     private static int randomInterval(SpawnerConfig config)

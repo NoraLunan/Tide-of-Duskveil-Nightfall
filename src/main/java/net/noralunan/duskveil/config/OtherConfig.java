@@ -24,11 +24,10 @@ public class OtherConfig
                 .entry("Lock Gamma Value", true);
         this.check_update = config
                 .depict("Whether to check for new mod version when a player joins the game?")
-                .depict("If enabled and network connection is poor, this may cause lag depending on the timeout setting.")
                 .entry("Check Update", true);
         this.timeout = config
                 .depict("Maximum time in seconds to wait for the update check before timing out.")
                 .min(0)
-                .entry("Check Update Timeout", 3);
+                .entry("Check Update Timeout", 10);
     }
 }

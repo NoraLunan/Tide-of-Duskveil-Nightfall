@@ -104,12 +104,12 @@ public interface TideLevel extends NoraLevel {
         getSavedData().nextwave += value;
     }
 
-    default void setDirty() {
-        getSavedData().setDirty();
+    default void syncData() {
+        getSavedData().sync(level());
     }
 
     private DuskveilData getSavedData() {
-        return DuskveilData.get(server());
+        return DuskveilData.get(level());
     }
 
     default int getTideNightRemain() {

@@ -19,5 +19,7 @@
 
   "duskveil.overlay.time": "Gametime: ",
   "duskveil.overlay.pos": "Pos: ",
-  "duskveil.overlay.entity": "Entity: "
+  "duskveil.overlay.entity": "Entity: ",
+
+  "duskveil.client.gamma_lock": "Locked"
 }

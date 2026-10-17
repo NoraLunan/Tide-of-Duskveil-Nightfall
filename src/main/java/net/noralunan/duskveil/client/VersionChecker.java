@@ -25,61 +25,75 @@ public class VersionChecker
     private static final Gson GSON = new Gson();
     private static final String PROMOS = "promos";
     private static final String LATEST = "1.20-latest";
+    private static final String REMOTE_URL = "https://github.com/NoraLunan/Tide-of-Duskveil-Nightfall/raw/master/version.json";
 
     @SubscribeEvent
     public static void loggedIn(PlayerEvent.PlayerLoggedInEvent event)
     {
-        if (DuskveilConfig.CLIENT.other.check_update.get() == false) return;
-        String latest = check();
-        if (latest != null && !latest.equals(Duskveil.VERSION))
-        {
-            Component message = Component.translatable("duskveil.message.version_update", latest, Duskveil.VERSION);
-            event.getEntity().displayClientMessage(message, false);
-            Minecraft.getInstance().stop();
-        }
+        if (!DuskveilConfig.CLIENT.other.check_update.get()) return;
+
+        CompletableFuture.supplyAsync(VersionChecker::fetch)
+                .whenComplete((latest, throwable) -> {
+                    if (throwable != null)
+                    {
+                        LOGGER.error("Version check task exception: {}", throwable);
+                        return;
+                    }
+                    if (latest == null) return;
+
+                    Minecraft client = Minecraft.getInstance();
+                    client.execute(() -> {
+                        if (!latest.equals(Duskveil.VERSION))
+                        {
+                            Component message = Component.translatable("duskveil.message.version_update", latest, Duskveil.VERSION);
+                            event.getEntity().displayClientMessage(message, false);
+                        }
+                    });
+                });
     }
 
-    public static String check()
+    private static String fetch()
     {
-        return CompletableFuture.supplyAsync(() -> {
-            String latest = null;
-            try
+        String latest = null;
+        HttpURLConnection connection = null;
+        try
+        {
+            URL url = new URL(REMOTE_URL);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            int timeout = DuskveilConfig.CLIENT.other.timeout.get() * 1000;
+            connection.setConnectTimeout(timeout);
+            connection.setReadTimeout(timeout);
+
+            int response = connection.getResponseCode();
+            if (response == HttpURLConnection.HTTP_OK)
             {
-                URL url = new URL("https://www.github.com/NoraLunan/Tide-of-Duskveil-Nightfall/raw/master/version.json");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                int timeout = DuskveilConfig.CLIENT.other.timeout.get() * 1000;
-                connection.setConnectTimeout(timeout);
-                connection.setReadTimeout(timeout);
-
-                int response = connection.getResponseCode();
-
-                if (response == HttpURLConnection.HTTP_OK)
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder content = new StringBuilder();
+                String input;
+                while ((input = in.readLine()) != null)
                 {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    StringBuilder content = new StringBuilder();
-                    String input;
-                    while ((input = in.readLine()) != null)
-                    {
-                        content.append(input);
-                    }
-                    in.close();
-
-                    JsonObject object = GSON.fromJson(content.toString(), JsonObject.class);
-                    JsonObject obj = object.get(PROMOS).getAsJsonObject();
-                    latest = obj.get(LATEST).getAsString();
+                    content.append(input);
                 }
-                else
-                {
-                    LOGGER.error("Version check failed, unexpected HTTP response code: {}", response);
-                }
+                in.close();
+                JsonObject object = GSON.fromJson(content.toString(), JsonObject.class);
+                JsonObject obj = object.get(PROMOS).getAsJsonObject();
+                latest = obj.get(LATEST).getAsString();
             }
-            catch (Exception exception)
+            else
             {
-                LOGGER.error("Version check failed: {}", exception);
+                LOGGER.error("Version check failed, unexpected HTTP response code: {}", response);
             }
-            return latest;
-        }).join();
+        }
+        catch (Exception exception)
+        {
+            LOGGER.error("Version check failed: {}", exception);
+        }
+        finally
+        {
+            if (connection != null) connection.disconnect();
+        }
+        return latest;
     }
 }

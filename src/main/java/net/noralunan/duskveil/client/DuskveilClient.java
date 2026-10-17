@@ -2,15 +2,20 @@ package net.noralunan.duskveil.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ViewportEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.noralunan.duskveil.config.DuskveilConfig;
+import net.noralunan.duskveil.core.DuskveilData;
 import net.noralunan.duskveil.core.TriggerType;
 import net.noralunan.duskveil.event.TideNightLifecycle;
+import net.noralunan.library.common.event.NoraTickEvent;
+import net.noralunan.library.common.event.PeriodicTickEvent;
 
 import javax.annotation.Nullable;
 
@@ -24,7 +29,8 @@ public class DuskveilClient
     private static float direct;
     private static float inverse;
 
-    private static boolean trigger;
+    private static TriggerType type;
+    private static boolean natural;
 
     static
     {
@@ -37,33 +43,31 @@ public class DuskveilClient
     @SubscribeEvent
     public static void color(ViewportEvent.ComputeFogColor event)
     {
-        if (!DuskveilConfig.CLIENT.other.modify_sky.get()) return;
+        if (DuskveilConfig.CLIENT.other.modify_sky.get() == false) return;
         Minecraft client = Minecraft.getInstance();
         ClientLevel level = client.level;
-        if (level == null) return;
+        if (level == null || type == null) return;
 
-        if (trigger)
+        if (natural)
         {
             float proto = level.getSkyDarken((float) event.getPartialTick()); // [0.2, 1.0]
             direct = Math.min(1f, proto * 2f - 0.4f);
             inverse = Math.max(0f, proto * -2f + 1.4f);
-        }
-        else
-        {
-            if (direct < 1f)
-            {
-                direct = Math.min(1f, direct + 0.005f);
-            }
-            if (inverse > 0f)
-            {
-                inverse = Math.max(0f, inverse - 0.005f);
-            }
         }
 
         if (rgb == null) parse(null);
         event.setRed(event.getRed() * direct + rgb[0] * inverse);
         event.setGreen(event.getGreen() * direct + rgb[1] * inverse);
         event.setBlue(event.getBlue() * direct + rgb[2] * inverse);
+    }
+
+    @PeriodicTickEvent
+    public static void change(NoraTickEvent.ClientTick event)
+    {
+        if (natural) return;
+        float delta = type == TriggerType.NONE ? 0.005f : -0.005f;
+        direct = Mth.clamp(direct + delta, 0f, 1f);
+        inverse = Mth.clamp(inverse - delta, 0f, 1f);
     }
 
     @SubscribeEvent
@@ -103,7 +107,27 @@ public class DuskveilClient
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void check(TideNightLifecycle.StatusChangeEvent event)
     {
-        trigger = event.getType() != TriggerType.NONE;
+        type = event.getType();
+        setNatural();
+    }
+
+    @SubscribeEvent
+    public static void loggedIn(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        type = DuskveilData.getTrigger(event.getEntity().level());
+        setNatural();
+    }
+
+    private static void setNatural()
+    {
+        natural = !(type == TriggerType.NONE || type == TriggerType.COMMAND);
+    }
+
+    @SubscribeEvent
+    public static void loggedOut(PlayerEvent.PlayerLoggedOutEvent event)
+    {
+        type = null;
+        natural = false;
     }
 
     @OnlyIn(Dist.CLIENT)

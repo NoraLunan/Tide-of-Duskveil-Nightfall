@@ -20,7 +20,8 @@ class Start {
             return 0;
         }
         if (!TimeChecker.start(tide)) {
-            tide.dayTime(DuskveilConfig.SERVER.event.start_time.get());
+            tide.server().getAllLevels().forEach(lvl ->
+                    ((TideLevel) lvl).dayTime(DuskveilConfig.SERVER.event.start_time.get()));
         }
         EventDetector.setStatus(TriggerType.COMMAND, tide);
         source.sendSuccess(() -> Component.translatable("duskveil.command.start.success"), true);

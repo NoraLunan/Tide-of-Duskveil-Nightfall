@@ -1,4 +1,4 @@
-package net.noralunan.duskveil.mixin;
+package net.noralunan.duskveil.mixin.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;

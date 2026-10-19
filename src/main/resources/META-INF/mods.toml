@@ -33,3 +33,10 @@ license = "${mod_license}"
     versionRange = "${noralib_version_range}"
     ordering = "NONE"
     side = "BOTH"
+
+[[dependencies.${mod_id}]]
+    modId = "tweakerge"
+    mandatory = false
+    versionRange = "[0.1.0,)"
+    ordering = "AFTER"
+    side = "CLIENT"

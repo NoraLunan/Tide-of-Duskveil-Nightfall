@@ -11,9 +11,10 @@
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "TimeCommandMixin",
-    "WeatherCommandMixin"
+    "WeatherCommandMixin",
+    "compat.tweakeroo.GammaOverrideMixin"
   ],
   "client": [
-    "OptionInstanceMixin"
+    "client.OptionInstanceMixin"
   ]
 }

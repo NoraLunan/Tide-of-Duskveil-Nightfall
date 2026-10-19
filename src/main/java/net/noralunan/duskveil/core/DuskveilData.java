@@ -64,6 +64,11 @@ public class DuskveilData extends SavedData
         );
     }
 
+    public static boolean isTideNight(Level level)
+    {
+        return get(level).tidenight;
+    }
+
     public static boolean isTrigger(Level level)
     {
         return getTrigger(level) != TriggerType.NONE;

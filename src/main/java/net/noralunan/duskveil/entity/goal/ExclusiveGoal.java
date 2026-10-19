@@ -68,27 +68,25 @@ public class ExclusiveGoal extends Goal
         {
             destroyBlock();
         }
+
+        if (this.fall_cooling > 0) this.fall_cooling--;
+        if (this.fire_cooling > 0) this.fire_cooling--;
+
         if (!this.self.onGround() && !(this.self instanceof FlyingMob) && this.config.immune_fall.get())
         {
-            if (this.fall_cooling-- <= 0)
-            {
-                this.fall_cooling = 100;
-                this.self.addEffect(new MobEffectInstance(
-                        MobEffects.SLOW_FALLING, 120, 0, false, false, false
-                ));
-            }
+            this.fall_cooling = 100;
+            this.self.addEffect(new MobEffectInstance(
+                    MobEffects.SLOW_FALLING, 120, 0, false, false, false
+            ));
         }
         if (this.self.isInLava() || this.self.isOnFire())
         {
             if (this.config.immune_fire.get())
             {
-                if (this.fire_cooling-- <= 0)
-                {
-                    this.fire_cooling = 100;
-                    this.self.addEffect(new MobEffectInstance(
-                       MobEffects.FIRE_RESISTANCE, 120, 0, false, false, false
-                    ));
-                }
+                this.fire_cooling = 100;
+                this.self.addEffect(new MobEffectInstance(
+                   MobEffects.FIRE_RESISTANCE, 120, 0, false, false, false
+                ));
             }
         }
     }
@@ -103,11 +101,11 @@ public class ExclusiveGoal extends Goal
         int y2 = this.self.getBlockY() + Mth.ceil(this.self.getBbHeight()) - 1;
         int z2 = this.self.getBlockZ() + rw;
 
-        for (int x = x1; x < x2; x++)
+        for (int x = x1; x <= x2; x++)
         {
-            for (int y = y1; y < y2; y++)
+            for (int y = y1; y <= y2; y++)
             {
-                for (int z = z1; z < z2; z++)
+                for (int z = z1; z <= z2; z++)
                 {
                     ServerLevel level = tide.level();
                     BlockPos pos = BlockPos.containing(x, y, z);

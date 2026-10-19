@@ -126,14 +126,14 @@ public class DuskveilConfig
 
     public static class ClientConfig {
         public final OverlayConfig overlay;
-        public final OtherConfig other;
+        public final OtherClientConfig other;
 
         private ClientConfig(NoraConfig config) {
             config.depict("Settings for Info Overlay").header(Duskveil.MOD_NAME, Duskveil.VERSION, ModConfig.Type.CLIENT);
             this.overlay = config.layer("Overlay").nest(OverlayConfig::new);
 
             config.depict("Other Client Settings");
-            this.other = config.layer("Other").nest(OtherConfig::new);
+            this.other = config.layer("Other").nest(OtherClientConfig::new);
         }
     }
 

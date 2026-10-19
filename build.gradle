@@ -6,8 +6,13 @@ plugins {
 }
 
 repositories {
-    flatDir {
-        dir "libs"
+    maven {
+        name "CurseForge"
+        url "https://cursemaven.com"
+    }
+    maven {
+        name "Modrinth"
+        url "https://api.modrinth.com/maven"
     }
 }
 
@@ -53,7 +58,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("dummy:noralib:${noralib_version}:dev")
+    implementation fg.deobf("curse.maven:noralib-1741860:9231772") // NoraLib
+    implementation fg.deobf("maven.modrinth:yke6wdGF:CYN4k7x6") // Tweakerge
+    implementation fg.deobf("maven.modrinth:SKI34J7B:adXONMb5") // MaFgLib
+
+    runtimeOnly fg.deobf("curse.maven:catalogue-459701:4766090") // Catalogue
+    runtimeOnly fg.deobf("maven.modrinth:M4vJe1FJ:xyB6Pr5e") // caramelChat
+    runtimeOnly fg.deobf("maven.modrinth:sk9rgfiA:UTbfe5d1") // Embeddium
 }
 
 tasks.named('processResources', ProcessResources).configure {

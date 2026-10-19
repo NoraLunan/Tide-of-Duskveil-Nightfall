@@ -6,7 +6,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
@@ -98,6 +97,10 @@ public class SpawnExecutor
                 int base = NoraMath.nextInt(moblist.min_count, moblist.max_count);
                 int limit = Mth.ceil(Math.pow(config.count_limit.get(), index) * base);
                 int count = Mth.ceil(Math.pow(config.wave_size.get(), tide.getWaveCount()) * limit);
+
+                LOGGER.debug("Base Count: {}; For {} Entry", base, key);
+                LOGGER.debug("Restricted Count: {}; For {} Entry", limit, key);
+                LOGGER.debug("Final Count: {}; For {} Entry", count, key);
 
                 for (int i = count; i > 0; i--)
                 {

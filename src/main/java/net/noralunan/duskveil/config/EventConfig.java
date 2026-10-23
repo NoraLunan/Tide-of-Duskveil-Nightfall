@@ -1,8 +1,8 @@
 package net.noralunan.duskveil.config;
 
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.noralunan.duskveil.core.MessageType;
-import net.noralunan.duskveil.core.WeatherType;
+import net.noralunan.duskveil.event.MessageType;
+import net.noralunan.duskveil.event.WeatherType;
 import net.noralunan.library.config.forge.NoraConfig;
 
 import java.util.List;

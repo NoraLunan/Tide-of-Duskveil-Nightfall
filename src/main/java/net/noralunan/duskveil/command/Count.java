@@ -8,6 +8,8 @@ import net.noralunan.duskveil.core.TideLevel;
 import net.noralunan.library.common.NoraComponent;
 
 class Count {
+    static final String VALUE = "value";
+
     static int query(CommandContext<CommandSourceStack> context) {
         CommandSourceStack source = context.getSource();
         if (source.getEntity() == null) return 0;
@@ -48,6 +50,6 @@ class Count {
     }
 
     private static int value(CommandContext<CommandSourceStack> context) {
-        return IntegerArgumentType.getInteger(context, "value");
+        return IntegerArgumentType.getInteger(context, VALUE);
     }
 }

@@ -6,7 +6,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.config.EventConfig;
-import net.noralunan.duskveil.core.MessageType;
 import net.noralunan.duskveil.core.TideLevel;
 import net.noralunan.duskveil.spawner.SpawnExecutor;
 import net.noralunan.library.common.NoraComponent;

@@ -90,6 +90,7 @@ public class MoblistConfig
     {
         Set<String> valid = new LinkedHashSet<>(DuskveilConfig.COMMON.json.keyList());
         boolean change = false;
+        Runnable log = () -> this.logger.warn("{} is incorrect, correcting", DuskveilConfig.MOBLIST_PATH);
         // 移除冗余项
         Set<String> redundant = new HashSet<>();
         for (String jsonKey : this.content.keySet())
@@ -100,7 +101,7 @@ public class MoblistConfig
                 if (!change)
                 {
                     change = true;
-                    this.logger.warn("{} is incorrect, correcting", DuskveilConfig.MOBLIST_PATH);
+                    log.run();
                 }
             }
         }
@@ -109,7 +110,6 @@ public class MoblistConfig
             redundant.forEach(this.content::remove);
             this.logger.warn("Removed {} invalid keys from config.", redundant.size());
         }
-
         // 添加缺失项
         for (String configKey : valid)
         {
@@ -118,7 +118,7 @@ public class MoblistConfig
                 if (!change)
                 {
                     change = true;
-                    this.logger.warn("{} is incorrect, correcting", DuskveilConfig.MOBLIST_PATH);
+                    log.run();
                 }
                 addDefault(configKey);
             }
@@ -141,10 +141,7 @@ public class MoblistConfig
 
         if (this.file.createNewFile())
         {
-            for (String key : DuskveilConfig.COMMON.json.keyList())
-            {
-                addDefault(key);
-            }
+            DuskveilConfig.COMMON.json.keyList().forEach(this::addDefault);
             this.change = true;
             write();
         }

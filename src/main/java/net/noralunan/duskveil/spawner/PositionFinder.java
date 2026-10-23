@@ -35,7 +35,7 @@ public class PositionFinder
          */
         protected static Vec3 find(TideLevel tide, int x, int z, int min, int max, int retries, boolean force)
         {
-            if (min >= max)
+            if (min > max)
                 throw new IllegalArgumentException(String.format("Invalid range: min(%d) and max(%d)", min, max));
 
             Vec3i result;

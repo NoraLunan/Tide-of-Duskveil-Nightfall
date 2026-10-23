@@ -5,7 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.commands.WeatherCommand;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.core.TideLevel;
-import net.noralunan.duskveil.core.WeatherType;
+import net.noralunan.duskveil.event.WeatherType;
 import net.noralunan.library.common.NoraHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

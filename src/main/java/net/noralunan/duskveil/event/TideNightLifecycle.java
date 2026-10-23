@@ -2,7 +2,6 @@ package net.noralunan.duskveil.event;
 
 import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
-import net.noralunan.duskveil.core.MessageType;
 import net.noralunan.duskveil.core.TideLevel;
 import net.noralunan.duskveil.core.TriggerType;
 

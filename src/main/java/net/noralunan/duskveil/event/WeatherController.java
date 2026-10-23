@@ -4,7 +4,6 @@ import net.minecraft.world.level.GameRules;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.core.TideLevel;
-import net.noralunan.duskveil.core.WeatherType;
 import net.noralunan.library.common.NoraHelper;
 import net.noralunan.library.common.event.NoraTickEvent;
 import net.noralunan.library.common.event.PeriodicTickEvent;

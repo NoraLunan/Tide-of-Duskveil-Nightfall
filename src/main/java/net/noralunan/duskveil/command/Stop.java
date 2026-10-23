@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.core.TideLevel;
 import net.noralunan.duskveil.core.TriggerType;
-import net.noralunan.duskveil.core.WeatherType;
+import net.noralunan.duskveil.event.WeatherType;
 import net.noralunan.duskveil.event.EventDetector;
 import net.noralunan.library.common.NoraHelper;
 

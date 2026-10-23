@@ -13,6 +13,7 @@ import net.noralunan.duskveil.client.DuskveilOverlay;
 import net.noralunan.duskveil.client.OverlayInfo;
 import net.noralunan.duskveil.client.VersionChecker;
 import net.noralunan.duskveil.command.DuskveilCommand;
+import net.noralunan.duskveil.command.argument.AlgorithmArgument;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.config.data.MoblistConfig;
 import net.noralunan.duskveil.config.data.MoblistHandler;
@@ -69,9 +70,11 @@ public class Duskveil
         IEventBus mod = FMLJavaModLoadingContext.get().getModEventBus();
         mod.addListener(DuskveilOverlay::setup);
         mod.register(OverlayInfo.EntityEntry.class);
-        mod.register(DuskveilClient.GammaOverride.class);
+        mod.register(DuskveilClient.GammaLock.class);
 
         mod.register(DuskveilData.NetWork.class);
+
+        AlgorithmArgument.register(mod);
 
         IEventBus forge = MinecraftForge.EVENT_BUS;
         forge.register(DuskveilData.class);

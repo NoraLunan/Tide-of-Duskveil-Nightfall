@@ -12,6 +12,7 @@ public class CommandConfig
     public final ForgeConfigSpec.ConfigValue<Boolean> clear;
     public final ForgeConfigSpec.ConfigValue<Boolean> gaze;
     public final ForgeConfigSpec.ConfigValue<Boolean> reload;
+    public final ForgeConfigSpec.ConfigValue<Boolean> spawn;
 
     protected CommandConfig(NoraConfig config)
     {
@@ -22,5 +23,6 @@ public class CommandConfig
         this.clear = config.restart().lineBreak().entry("Enable Clear Command", true);
         this.gaze = config.restart().lineBreak().entry("Enable Gaze Command", true);
         this.reload = config.restart().lineBreak().entry("Enable Reload Command", true);
+        this.spawn = config.restart().lineBreak().entry("Enable Spawn Command", true);
     }
 }

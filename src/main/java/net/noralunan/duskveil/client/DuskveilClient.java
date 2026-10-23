@@ -105,7 +105,7 @@ public class DuskveilClient
     @SubscribeEvent
     public static void loggedIn(PlayerEvent.PlayerLoggedInEvent event)
     {
-        delta = MAX_DELTA;
+        delta = DuskveilData.isTideNight(event.getEntity().level()) ? -MAX_DELTA : MAX_DELTA;
         resetProportion();
     }
 
@@ -136,7 +136,7 @@ public class DuskveilClient
 
 
     @OnlyIn(Dist.CLIENT)
-    public static class GammaOverride
+    public static class GammaLock
     {
         @SubscribeEvent
         public static void setup(FMLClientSetupEvent event)

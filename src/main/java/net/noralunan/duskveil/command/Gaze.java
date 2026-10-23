@@ -32,7 +32,7 @@ class Gaze {
             source.sendSuccess(() -> Component.translatable("duskveil.command.gaze.success", player.getName()), true);
             return 1;
         } catch (CommandSyntaxException exception) {
-            source.sendFailure(Component.translatable("duskveil.command.gaze.fail.exception"));
+            source.sendFailure(Component.translatable("duskveil.command.fail.player_exception"));
             return 0;
         }
     }

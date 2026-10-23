@@ -69,16 +69,6 @@ public class DuskveilData extends SavedData
         return get(level).tidenight;
     }
 
-    public static boolean isTrigger(Level level)
-    {
-        return getTrigger(level) != TriggerType.NONE;
-    }
-
-    public static TriggerType getTrigger(Level level)
-    {
-        return get(level).trigger;
-    }
-
     private static DuskveilData load(CompoundTag tag)
     {
         return new DuskveilData().read(tag);

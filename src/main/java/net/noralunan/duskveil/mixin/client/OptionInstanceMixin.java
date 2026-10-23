@@ -20,13 +20,13 @@ public abstract class OptionInstanceMixin
 
             var instance = (OptionInstance<?>) (Object) this;
             var options = Minecraft.getInstance().options;
-            if (instance != options.gamma()) return value;
 
-            return 0d;
+            if (instance != null && options != null && instance == options.gamma())
+            {
+                return 0d;
+            }
         }
-        catch (IllegalStateException ignored)
-        {
-            return value;
-        }
+        catch (Exception ignored) {}
+        return value;
     }
 }

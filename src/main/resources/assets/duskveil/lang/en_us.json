@@ -1,11 +1,11 @@
 {
+  "duskveil.command.fail.player_exception": "Must specify a valid online player",
   "duskveil.command.clear.success": "Tide Mobs cleared",
   "duskveil.command.count.fail": "Result cannot be less than 0",
   "duskveil.command.count.success": "Set Event Count to %s",
   "duskveil.command.marker.success": "Tide Night is coming tonight",
   "duskveil.command.gaze.fail.no_during": "Can only be used during Tide Night",
   "duskveil.command.gaze.fail.gamemode": "%s is immune to Gaze",
-  "duskveil.command.gaze.fail.exception": "Must specify a valid online player",
   "duskveil.command.gaze.success": "Enemies around %s are now target them",
   "duskveil.command.start.fail": "It is currently during Tide Night",
   "duskveil.command.start.success": "Tide Night has started",
@@ -14,12 +14,11 @@
   "duskveil.command.reload.success": "%s reloaded successfully",
   "duskveil.command.time.fail": "Time change disabled in Tide Night",
   "duskveil.command.weather.fail": "Weather change disabled in Tide Night",
+  "duskveil.command.spawn.success": "Spawned %s entities successfully",
 
   "duskveil.message.version_update": "[Tide of Duskveil Nightfall] New version %s is available! Current version: %s",
 
-  "duskveil.overlay.time": "Gametime: ",
+  "duskveil.overlay.time": "Time: ",
   "duskveil.overlay.pos": "Pos: ",
-  "duskveil.overlay.entity": "Entity: ",
-
-  "duskveil.client.gamma_lock": "Locked"
+  "duskveil.overlay.entity": "Entity: "
 }

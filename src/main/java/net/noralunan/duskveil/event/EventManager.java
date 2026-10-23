@@ -4,7 +4,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.config.EventConfig;
-import net.noralunan.duskveil.core.MessageType;
 import net.noralunan.duskveil.core.TideLevel;
 import net.noralunan.duskveil.core.TriggerType;
 import net.noralunan.library.common.NoraHelper;

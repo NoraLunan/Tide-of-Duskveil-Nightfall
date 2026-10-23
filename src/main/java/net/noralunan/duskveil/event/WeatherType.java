@@ -1,4 +1,4 @@
-package net.noralunan.duskveil.core;
+package net.noralunan.duskveil.event;
 
 public enum WeatherType
 {

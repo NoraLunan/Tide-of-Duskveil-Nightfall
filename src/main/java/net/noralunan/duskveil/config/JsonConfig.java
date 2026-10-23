@@ -14,6 +14,7 @@ public class JsonConfig {
     private ForgeConfigSpec.ConfigValue<Integer> end_his;
     private ForgeConfigSpec.ConfigValue<Integer> min_count;
     private ForgeConfigSpec.ConfigValue<Integer> max_count;
+    // TODO: 添加 display_name 条目
 
     protected JsonConfig(NoraConfig config) {
         this.key_list = config.depict("""

@@ -9,7 +9,6 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.config.EntityConfig;
-import net.noralunan.duskveil.core.TideLevel;
 import net.noralunan.library.common.NoraMath;
 import net.noralunan.library.common.NoraPlayer;
 
@@ -17,16 +16,14 @@ import java.util.EnumSet;
 
 public class PathfindGoal extends Goal
 {
-    private final TideLevel tide;
     private final Mob self;
     private final ServerPlayer target;
     private final EntityConfig config;
     private int timer;
     private final double follow_range;
 
-    public PathfindGoal(TideLevel tide, Mob self, Player target)
+    public PathfindGoal(Mob self, Player target)
     {
-        this.tide = tide;
         this.self = self;
         this.target = target instanceof ServerPlayer player ? player : null;
         this.config = DuskveilConfig.SERVER.entity;
@@ -41,13 +38,13 @@ public class PathfindGoal extends Goal
     @Override
     public boolean canUse()
     {
-        return canContinueToUse() && this.self.isAlive() && this.target.isAlive() && this.config.pathfind_move.get();
+        return canContinueToUse() && this.self.isAlive() && this.config.pathfind_move.get();
     }
 
     @Override
     public boolean canContinueToUse()
     {
-        return this.tide.isTideNight() && this.target != null;
+        return this.target != null && this.target.isAlive();
     }
 
     @Override

@@ -169,7 +169,7 @@ public class EntityDriver
 
     private static void addAI(TideLevel tide, Mob mob, Player player, Map<UUID, List<Goal>> cache)
     {
-        Goal pathfind = new PathfindGoal(tide, mob, player);
+        Goal pathfind = new PathfindGoal(mob, player);
         Goal exclusive = new ExclusiveGoal(tide, mob);
 
         GoalSelector goal = mob.goalSelector;

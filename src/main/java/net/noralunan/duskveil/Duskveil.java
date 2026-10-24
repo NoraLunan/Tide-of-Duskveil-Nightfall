@@ -28,6 +28,7 @@ import net.noralunan.duskveil.event.WeatherController;
 import net.noralunan.duskveil.spawner.MobCountStats;
 import net.noralunan.duskveil.spawner.SpawnExecutor;
 import net.noralunan.duskveil.spawner.SpawnScheduler;
+import net.noralunan.library.common.NoraHelper;
 import net.noralunan.library.common.NoraLogger;
 import net.noralunan.library.common.event.NoraEvent;
 
@@ -113,6 +114,6 @@ public class Duskveil
 
     public static NoraLogger logger()
     {
-        return NoraLogger.get(MOD_ID, NoraLogger.STACK_WALKER.getCallerClass());
+        return NoraLogger.get(MOD_ID, NoraHelper.STACK_WALKER.getCallerClass());
     }
 }

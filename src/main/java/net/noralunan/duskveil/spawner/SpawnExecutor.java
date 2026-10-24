@@ -9,7 +9,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -80,11 +79,11 @@ public class SpawnExecutor
         int y = player.getBlockY();
         int z = player.getBlockZ();
 
-        Vec2 pending = NoraMath.nextPlane(x, z, min_distance, max_distance);
+        ColumnPos pending = NoraMath.nextPlane(x, z, min_distance, max_distance);
 
         boolean evenly_distribute = config.evenly_distribute.get();
-        int rx = evenly_distribute ? x : NoraMath.round(pending.x);
-        int rz = evenly_distribute ? z : NoraMath.round(pending.y);
+        int rx = evenly_distribute ? x : NoraMath.round(pending.x());
+        int rz = evenly_distribute ? z : NoraMath.round(pending.z());
         int min = evenly_distribute ? min_distance : 0;
         int max = evenly_distribute ? max_distance : max_distance >> 4;
 

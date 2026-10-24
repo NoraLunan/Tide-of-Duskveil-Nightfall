@@ -2,6 +2,7 @@ package net.noralunan.duskveil.spawner;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ColumnPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.core.TideLevel;
@@ -44,9 +44,9 @@ public class PositionFinder
 
             do
             {
-                Vec2 vec2 = NoraMath.nextPlane(x, z, min, max);
-                int rx = NoraMath.round(vec2.x);
-                int rz = NoraMath.round(vec2.y);
+                ColumnPos vec2 = NoraMath.nextPlane(x, z, min, max);
+                int rx = NoraMath.round(vec2.x());
+                int rz = NoraMath.round(vec2.z());
                 int ry = tide.worldSurface(rx, rz);
                 result = new Vec3i(rx, ry, rz);
                 attempt--;
@@ -105,9 +105,9 @@ public class PositionFinder
 
             do
             {
-                Vec2 vec2 = NoraMath.nextPlane(x, z, min, max);
-                int rx = NoraMath.round(vec2.x);
-                int rz = NoraMath.round(vec2.y);
+                ColumnPos vec2 = NoraMath.nextPlane(x, z, min, max);
+                int rx = NoraMath.round(vec2.x());
+                int rz = NoraMath.round(vec2.z());
 
                 if (!level.getWorldBorder().isWithinBounds(rx, 0, rz))
                 {

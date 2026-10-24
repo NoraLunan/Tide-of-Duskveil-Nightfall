@@ -2,9 +2,8 @@ package net.noralunan.duskveil.core;
 
 import net.noralunan.duskveil.config.DuskveilConfig;
 import net.noralunan.duskveil.event.EventDetector;
-import net.noralunan.duskveil.event.EventManager;
+import net.noralunan.library.common.NoraHelper;
 import net.noralunan.library.common.NoraLevel;
-import net.noralunan.library.common.NoraLogger;
 
 public interface TideLevel extends NoraLevel {
     default boolean isTideNight() {
@@ -28,8 +27,8 @@ public interface TideLevel extends NoraLevel {
      * If you want to change the TriggerType, please use the setStatus method from {@link EventDetector}
      */
     default void setTrigger(TriggerType type) {
-        Class<?> clazz = NoraLogger.STACK_WALKER.getCallerClass();
-        if (clazz != EventDetector.class && clazz != EventManager.class)
+        Class<?> clazz = NoraHelper.STACK_WALKER.getCallerClass();
+        if (clazz != EventDetector.class)
             throw new UnsupportedOperationException("Please use the setStatus method from "+ EventDetector.class.getName());
         getSavedData().trigger = type;
     }
